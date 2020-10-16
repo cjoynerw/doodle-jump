@@ -1,4 +1,5 @@
-# Welcome to Doodle Jump clone!
+# Welcome to a Doodle Jump clone!
+![image](https://user-images.githubusercontent.com/66435399/96321384-cf4ab900-0fda-11eb-9424-d7cc8043e276.png)
 <h2>We all know the game Doodle Jump from our childhood so I decided to make a clone of it using the web design basics: HTML, CSS, & JavaScript.</h2><br />
 <h3>Controls:</h3><br />
 Left Arrow = Move left<br />
