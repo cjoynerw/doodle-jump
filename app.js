@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(upTimerId)
         isJumping = false
         downTimerId = setInterval(function() {
-            doodlerBottomSpace -= 5
+            doodlerBottomSpace -= 10
             doodler.style.bottom = doodlerBottomSpace + 'px'
             if (doodlerBottomSpace <= 0) {
                 gameOver()
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         while (grid.firstChild) {
             grid.removeChild(grid.firstChild)
         }
-        grid.innerHTML = score
+        grid.innerHTML = 'Your score: ' + score
         clearInterval(upTimerId)
         clearInterval(downTimerId)
         clearInterval(leftTimeId)
