@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let upTimerId
     let downTimerId
     let isJumping = true
+    let isGoingLeft = false
+    let isGoingRight = false
+    let leftTimeId
+    let rightTimeId
 
     function createDoodler() {
         grid.appendChild(doodler)
@@ -96,13 +100,46 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(downTimerId)
     }
 
-    function control() {
-        if (e.key === 'ArrowLeft') {
+    function moveLeft() {
+        if (isGoingRight) {
+            clearInterval(rightTimeId)
+            isGoingRight = false
+        }
+        leftTimeId = setInterval(function() {
+            if (doodlerLeftSpace >= 0) {
+            doodlerLeftSpace -=5
+            doodler.style.left = doodlerLeftSpace + 'px'
+            } else moveRight()
+        },30)
+    }
+    
+    function moveRight() {
+        if (isGoingLeft) {
+            clearInterval(leftTimeId)
+            isGoingLeft = false
+        }
+        rightTimeId = setInterval(function() {
+            if (doodlerLeftSpace <= 340) {
+                doodlerLeftSpace += 5
+                doodler.style.left = doodlerLeftSpace + 'px'
+            } else moveLeft()
+        },30)
+    }
 
-        } else if (e.key === 'ArrowRight') {
-            
-        } else if (e.key === 'ArrowUp') {
+    function moveStraight() {
+        isGoingRight = false
+        isGoingLeft = false
+        clearInterval(rightTimeId)
+        clearInterval(leftTimeId)
+    }
 
+    function control(e) {
+        if (e.key === "ArrowLeft") {
+            moveLeft()
+        } else if (e.key === "ArrowRight") {
+            moveRight()
+        } else if (e.key === "ArrowUp") {
+            moveStraight()
         }
     }
 
@@ -112,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             createDoodler()
             setInterval(movePlatforms,30)
             jump()
+            document.addEventListener('keyup',control)
         }
     }
     // attach button
